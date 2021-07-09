@@ -14,6 +14,7 @@ wget -O include/kernel-defaults.mk https://raw.githubusercontent.com/openwrt/ope
 sed -i '/libelf\/compile/d' tools/Makefile
 sed -i 's/ libelf//' tools/Makefile
 rm -rf package/feeds/dpdk_repo/kmod-amd_iommu_v2
+sed -i 's/ -flto/ -flto -lpthread/' package/feeds/packages/coremark/Makefile
 rm -Rf tools/upx && svn export https://github.com/coolsnowwolf/lede/trunk/tools/upx tools/upx
 rm -Rf tools/ucl && svn export https://github.com/coolsnowwolf/lede/trunk/tools/ucl tools/ucl
 sed -i 's?zstd$?zstd ucl upx\n$(curdir)/upx/compile := $(curdir)/ucl/compile?g' tools/Makefile
